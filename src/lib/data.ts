@@ -3,9 +3,9 @@ export const business = {
   tagline: "Your Trusted House Agent",
   slogan: "Your Comfort Is Our Priority",
   rcNumber: "RC: 9247475",
-  phone: "+234 800 000 0000", // TODO: replace with real number
-  whatsapp: "2348000000000", // TODO: replace with real number, digits only
-  email: "info@khalyphasmarthomes.com", // TODO: replace with real email
+  phone: "+234 812 270 7344", // TODO: replace with real number
+  whatsapp: "2348122707344", // TODO: replace with real number, digits only
+
   address: "Abuja, Nigeria", // TODO: replace with real address
   whatsappGroupLink: "", // TODO: paste your WhatsApp group invite link here
 };
