@@ -1,43 +1,49 @@
+"use client";
 import Image from "next/image";
-import { Listing, business } from "@/lib/data";
+import { useState } from "react";
+import { Listing } from "@/lib/data";
 
 export default function ListingCard({ listing }: { listing: Listing }) {
-  const message = encodeURIComponent(
-    `Hello, I'm interested in "${listing.title}" (${listing.location}) listed on your website.`
-  );
+  const [index, setIndex] = useState(0);
+  const total = listing.images.length;
 
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition border border-gold-100">
-      <div className="relative h-52 w-full">
+      <div className="relative h-64 w-full">
         <Image
-          src={listing.image}
-          alt={listing.title}
+          src={listing.images[index]}
+          alt="Property photo"
           fill
           className="object-cover"
         />
-        <span className="absolute top-3 left-3 bg-maroon-700 text-white text-xs font-semibold px-3 py-1 rounded-full">
-          {listing.type}
-        </span>
-      </div>
-      <div className="p-5">
-        <h3 className="font-serif font-bold text-lg text-maroon-800">
-          {listing.title}
-        </h3>
-        
-      
-        <div className="flex gap-4 text-sm text-gray-600 mb-3">
-          <span>{listing.beds} Beds</span>
-          <span>{listing.baths} Baths</span>
-        </div>
-        <p className="text-sm text-gray-600 mb-4">{listing.description}</p>
-        <a
-          href={`https://wa.me/${business.whatsapp}?text=${message}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block text-center bg-maroon-600 hover:bg-maroon-700 text-white text-sm font-semibold py-2 rounded-full transition"
-        >
-          Inquire on WhatsApp
-        </a>
+        {total > 1 && (
+          <>
+            <button
+              onClick={() => setIndex((index - 1 + total) % total)}
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white w-8 h-8 rounded-full flex items-center justify-center"
+              aria-label="Previous photo"
+            >
+              ‹
+            </button>
+            <button
+              onClick={() => setIndex((index + 1) % total)}
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white w-8 h-8 rounded-full flex items-center justify-center"
+              aria-label="Next photo"
+            >
+              ›
+            </button>
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+              {listing.images.map((_, i) => (
+                <span
+                  key={i}
+                  className={`w-1.5 h-1.5 rounded-full ${
+                    i === index ? "bg-white" : "bg-white/50"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
