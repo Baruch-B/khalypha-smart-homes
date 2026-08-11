@@ -23,8 +23,8 @@ export default function ListingCard({ listing }: { listing: Listing }) {
         <h3 className="font-serif font-bold text-lg text-maroon-800">
           {listing.title}
         </h3>
-        <p className="text-sm text-gray-500 mb-2">{listing.location}</p>
-        <p className="text-gold-600 font-bold mb-3">{listing.price}</p>
+        
+      
         <div className="flex gap-4 text-sm text-gray-600 mb-3">
           <span>{listing.beds} Beds</span>
           <span>{listing.baths} Baths</span>
